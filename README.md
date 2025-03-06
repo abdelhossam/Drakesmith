@@ -1,6 +1,6 @@
-# 🚀 Blacksmith ERC1155 - NFT Minting & Forging (on Polygon)
+# 🚀 Drakesmith - NFT Minting & Forging (on Polygon)
 
-A fully decentralized ERC1155-based NFT system, built to demonstrate Solidity smart contract development with **minting, forging, operator-controlled execution, and cooldown mechanisms**. The system consists of two core contracts:
+A fully decentralized ERC1155-based NFT system, built to demonstrate Solidity smart contract development with **minting, forging, operator-controlled execution,** and **cooldown mechanisms**. The system consists of two core contracts:
 
 1. **Blacksmith_ERC1155.sol** – The ERC1155 token contract with minting and burning functionalities.
 2. **Blacksmith.sol** – The logic contract handling **cooldowns, burning rules, and token forging**.
@@ -30,11 +30,22 @@ A fully decentralized ERC1155-based NFT system, built to demonstrate Solidity sm
 ---
 
 ## 🌍 **Live Demo & Contract Addresses**
-- 🔗 **Frontend:** [Mint & Forge Dragon NFTs](https://prismatic-salmiakki-286dd3.netlify.app/)
+- 🔗 **Frontend:** [Mint & Forge NFTs](https://prismatic-salmiakki-286dd3.netlify.app/)
+- 📜 **ERC1155 Contract:** [0xF0a0009b94e7E6071cC42b1eAA6F1B4424282b39](https://polygonscan.com/address/0xF0a0009b94e7E6071cC42b1eAA6F1B4424282b39) (Polygon Mainnet)
+- 🔥 **Forging Logic Contract:** [0x77ca1Db200df9A8BAFC993b77E0feFBE7D495463](https://polygonscan.com/address/0x77ca1Db200df9A8BAFC993b77E0feFBE7D495463) (Polygon Mainnet)
 
 ---
 
-## 📌 **Core Features & Solidity Highlights**
+## 🔒 **Security & Gas Optimizations**
+- **Access Control**: Uses `onlyOperator` to restrict minting/burning to authorized accounts.
+- **Cooldown Mechanism**: Prevents spam minting and enforces time-based restrictions.
+- **Batch Minting & Burning**: Reduces gas costs by processing multiple tokens in a single transaction.
+- **Efficient Storage Usage**: Uses mappings to track cooldowns, minimizing storage operations.
+- **Safe External Calls**: Verifies contract addresses before interaction to avoid external call vulnerabilities.
+
+---
+
+## 📌 **Core Features**
 
 ### 🔹 **ERC1155 NFT Contract (Blacksmith_ERC1155)**
 - Implements **ERC1155 standard** using OpenZeppelin.
@@ -66,28 +77,13 @@ modifier onlyOperator {
 ---
 
 ### 🔹 **Blacksmith Logic Contract (Forging & Cooldowns)**
-**Minting Free Tokens (Single & Batch):**
-```solidity
-function _mintSingleFreeToken(uint256 tokenId, string memory data) private {
-    require(getCooldownDuration() == 0, "Wait For the cooldown");
-    IERC1155Token.mint(msg.sender, tokenId, 1, data);
-    _cooldown[msg.sender] = block.timestamp + _interval;
-    emit TokenMinted(data);
-}
+- Implements **burn-and-mint forging mechanism**.
+- Allows **minting free tokens** with cooldown enforcement.
+- Supports **batch minting** and **burning-based minting**.
+- Enforces **cooldowns** for minting to prevent spam transactions.
+- Interfaces with the ERC1155 contract using `customIERC1155`.
 
-function _mintAllFreeTokens(uint256[] memory requiredIds, string memory data) private {
-    require(getCooldownDuration() == 0, "Wait For the cooldown");
-    uint256[] memory values = new uint256[](requiredIds.length);
-    for (uint256 i = 0; i < requiredIds.length; i++) {
-        values[i] = 1; 
-    }
-    IERC1155Token.mintBatch(msg.sender, requiredIds, values, data);
-    _cooldown[msg.sender] = block.timestamp + _interval;
-    emit TokenMinted(data);
-}
-```
-- **Enforces cooldown before minting free NFTs.**
-- **Batch minting** optimizes transactions and reduces gas costs.
+#### **Key Solidity Code Snippets**
 
 **Burn and Forge Mechanism:**
 ```solidity
@@ -102,7 +98,8 @@ function _mintTokenWithBurn(uint256 tokenId, uint256[] memory requiredIds, strin
 }
 ```
 - **Requires burning specific token combinations** to mint new NFTs.
-- Ensures **burned NFTs cannot be reused immediately**.
+- Enforces cooldown before forging.
+- Emits event logs for blockchain transparency.
 
 ---
 
@@ -112,9 +109,9 @@ function _mintTokenWithBurn(uint256 tokenId, uint256[] memory requiredIds, strin
 
 ---
 
-### 🎯 **Project Highlights**
+### 🎯 **Project Highlights & Technical Strengths**
 ✔️ Demonstrates **ERC1155 implementation** with **minting & burning**.  
 ✔️ Implements **operator-based execution** for controlled NFT issuance.  
-✔️ Uses **cooldowns & burn-to-forge logic** to ensure sustainable NFT generation.   
-✔️ Fully **deployed on Polygon** with an operational frontend.
+✔️ Uses **cooldowns & burn-to-forge logic** to ensure sustainable NFT generation.    
+✔️ Fully **deployed on Polygon Mainnet** with an operational frontend.
 
