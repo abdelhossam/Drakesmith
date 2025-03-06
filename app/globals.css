@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222 47% 11%;
+  
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+  
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
+  
+  --primary: 221 83% 53%;
+  --primary-foreground: 210 40% 98%;
+  
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222 47% 11%;
+  
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222 47% 11%;
+  
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 221 83% 53%;
+  
+  --radius: 1rem;
+
+  --chart-1: 221 83% 53%;
+  --chart-2: 142 76% 36%;
+  --chart-3: 245 58% 51%;
+  --chart-4: 26 83% 53%;
+  --chart-5: 334 85% 45%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 min-h-screen text-foreground;
+  }
+}
+
+/* Custom styles for NFT cards */
+.nft-card {
+  @apply transition-all duration-300 hover:scale-105 hover:shadow-xl bg-white/80 backdrop-blur-sm border-2 rounded-2xl overflow-hidden;
+}
+
+.nft-image-container {
+  @apply relative overflow-hidden rounded-t-2xl;
+}
+
+.nft-content {
+  @apply p-6 space-y-4;
+}
+
+.nft-title {
+  @apply text-2xl font-bold tracking-tight bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
+}
+
+.nft-badge {
+  @apply inline-flex items-center rounded-full px-3 py-1 text-sm font-medium transition-colors;
+}
+
+.button-primary {
+  @apply bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 shadow-lg hover:shadow-blue-500/25 transition-all duration-300;
+}
+
+.button-destructive {
+  @apply bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 shadow-lg hover:shadow-red-500/25 transition-all duration-300;
+}
+
+.button-secondary {
+  @apply bg-white text-gray-800 hover:bg-gray-50 shadow-lg hover:shadow-gray-200/50 transition-all duration-300;
+}
+
+/* Header and navigation styles */
+.header-container {
+  @apply sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-md;
+}
+
+.nav-container {
+  @apply container flex h-16 items-center;
+}
+
+/* Profile section styles */
+.profile-card {
+  @apply rounded-2xl border-2 bg-white/80 backdrop-blur-sm p-8 shadow-xl;
+}
+
+.profile-stats {
+  @apply grid gap-6 md:grid-cols-2 lg:grid-cols-4;
+}
+
+.stat-card {
+  @apply rounded-xl border-2 bg-gradient-to-br from-white to-gray-50 p-6 shadow-lg hover:shadow-xl transition-shadow duration-300;
+}
+
+/* Gallery layout styles */
+.gallery-grid {
+  @apply grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+}
+
+/* Toast notifications */
+.toast-success {
+  @apply bg-green-50 border-green-200 text-green-800 rounded-xl shadow-lg;
+}
+
+.toast-error {
+  @apply bg-red-50 border-red-200 text-red-800 rounded-xl shadow-lg;
+}
+
+/* Loading states */
+.skeleton {
+  @apply animate-pulse bg-muted rounded-xl;
+}
+
+/* Tooltips */
+.tooltip {
+  @apply z-50 rounded-xl bg-black/90 px-4 py-2 text-sm text-white shadow-xl animate-in fade-in-0 zoom-in-95;
+}
+
+/* Connect wallet card */
+.connect-wallet-card {
+  @apply bg-gradient-to-br from-blue-500/5 to-purple-500/5 backdrop-blur-sm border-2 rounded-2xl shadow-2xl;
+}
+
+/* Custom animations */
+@keyframes bounce-subtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.animate-bounce-subtle {
+  animation: bounce-subtle 2s infinite;
+}
+
+/* Forge button glow effect */
+.forge-button {
+  @apply relative overflow-hidden;
+}
+
+.forge-button::after {
+  content: '';
+  @apply absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 opacity-0 transition-opacity duration-300;
+}
+
+.forge-button:hover::after {
+  @apply opacity-20;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full hover:bg-gray-400 transition-colors;
+}
