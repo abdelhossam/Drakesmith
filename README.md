@@ -53,8 +53,6 @@ A fully decentralized ERC1155-based NFT system, built to demonstrate Solidity sm
 - Supports **URI metadata updates**.
 - Implements `tokenURI` to return dynamic metadata.
 
-#### **Key Solidity Code Snippets**
-
 **Operator-Controlled Minting:**
 ```solidity
 function mint(address to, uint256 id, uint256 amount, bytes memory data) external onlyOperator {
@@ -102,16 +100,16 @@ function _mintTokenWithBurn(uint256 tokenId, uint256[] memory requiredIds, strin
 - Emits event logs for blockchain transparency.
 
 ---
-
-## 📩 **Let's Connect**
-📧 **Email**: [abdel.hossam.m@gmail.com](mailto:abdel.hossam.m@gmail.com)  
-💼 **LinkedIn**: [abdelhossam](https://www.linkedin.com/in/abdelhossam/)  
-
----
-
+  
 ### 🎯 **Project Highlights & Technical Strengths**
 ✔️ Demonstrates **ERC1155 implementation** with **minting & burning**.  
 ✔️ Implements **operator-based execution** for controlled NFT issuance.  
 ✔️ Uses **cooldowns & burn-to-forge logic** to ensure sustainable NFT generation.    
 ✔️ Fully **deployed on Polygon Mainnet** with an operational frontend.
+
+---
+
+## 📩 **Let's Connect**
+📧 **Email**: [abdel.hossam.m@gmail.com](mailto:abdel.hossam.m@gmail.com)  
+💼 **LinkedIn**: [abdelhossam](https://www.linkedin.com/in/abdelhossam/)
 
